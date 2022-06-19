@@ -16,7 +16,7 @@ public class TaskListDemoApplication {
 	String hello(){
 		return """
     			Hello.It Works!
-    			現在時刻は％sです。
+    			現在時刻%sです。
 				""".formatted(LocalDateTime.now());
 	}
 }
