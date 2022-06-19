@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 @RestController
 public class TaskListDemoApplication {
@@ -12,6 +14,9 @@ public class TaskListDemoApplication {
 	public static void main(String[] args) {SpringApplication.run(TaskListDemoApplication.class, args);}
 	@RequestMapping("/")
 	String hello(){
-		return "AAA AA";
+		return """
+    			Hello.It Works!
+    			現在時刻は％sです。
+				""".formatted(LocalDateTime.now());
 	}
 }
