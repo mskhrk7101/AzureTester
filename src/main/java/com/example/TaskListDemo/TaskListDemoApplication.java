@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskListDemoApplication {
 
 	public static void main(String[] args) {SpringApplication.run(TaskListDemoApplication.class, args);}
-	@RequestMapping("/aaaa")
+	@RequestMapping("/")
 	String hello(){
 		return "AAA AA";
 	}
