@@ -1,5 +1,6 @@
 package com.example.TaskListDemo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,12 @@ public class HomeController {
     }
 
     private List<TaskItem> taskItems = new ArrayList<>();
+    private final TaskListDao dao;
+
+    @Autowired
+    HomeController(TaskListDao dao) {
+        this.dao = dao;
+    }
     @RequestMapping("/hello")
 //    @ResponseBody
 //    String hello() {
@@ -38,6 +45,7 @@ public class HomeController {
 
     @GetMapping(value = "/list")
     String listItems(Model model) {
+        List<TaskItem> taskItems = dao.findAll();
         model.addAttribute("taskList", taskItems);
         return "home";
     }
@@ -46,7 +54,7 @@ public class HomeController {
                    @RequestParam("deadline") String deadline) {
         String id = UUID.randomUUID().toString().substring(0, 8);
         TaskItem item = new TaskItem(id, task, deadline, false);
-        taskItems.add(item);
+        dao.add(item);
         return "redirect:/list";
     }
 }
